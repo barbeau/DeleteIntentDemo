@@ -6,7 +6,7 @@ Demo project to illustrate problem with DeleteIntent discussed at http://stackov
 Steps to reproduce issue:
 
 1. Start the app
-2. Tap the "Show Notification" button.  A notificatoin saying "Route 5 has departed" should be shown.
+2. Tap the "Show Notification" button.  A notification saying "Route 5 has departed" should be shown.
 3. Dismiss the notification.
 
 If the DeleteIntent is received by the AlarmReceiver, you'll see a debug log printout "In onReceive with intent action com.joulespersecond.seattlebusbot.action.CANCEL" and a Toast will also be shown that says "AlarmReceiver got CANCEL Intent".
