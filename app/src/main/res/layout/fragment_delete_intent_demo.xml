@@ -11,8 +11,19 @@
     <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Show Notification"
-            android:id="@+id/btnShowNotification" android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true"/>
+            android:text="Show Notification - Receiver"
+            android:id="@+id/btnShowNotificationBroadcast"
+        android:layout_marginTop="95dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Show Notification - Service"
+        android:id="@+id/btnShowNotificationService"
+        android:layout_marginTop="137dp"
+        android:layout_below="@+id/btnShowNotificationBroadcast"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

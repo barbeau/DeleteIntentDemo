@@ -10,12 +10,9 @@ public class AlarmReceiver extends BroadcastReceiver {
 
     private static final String TAG = "AlarmReceiver";
 
-    public AlarmReceiver() {
-    }
-
     @Override
     public void onReceive(Context context, Intent intent) {
-        Log.d(TAG, "In onReceive with intent action " + intent.getAction());
-        Toast.makeText(context, "AlarmReceiver got CANCEL Intent", Toast.LENGTH_LONG).show();
+        Log.d(TAG, "Receiver got deleteIntent! Action - " + intent.getAction());
+        Toast.makeText(context, "Receiver got deleteIntent", Toast.LENGTH_LONG).show();
     }
 }
