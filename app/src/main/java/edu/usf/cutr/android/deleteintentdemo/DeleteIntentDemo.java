@@ -1,15 +1,13 @@
 package edu.usf.cutr.android.deleteintentdemo;
 
+import android.app.Activity;
+import android.app.Fragment;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.support.v4.app.NotificationCompat;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,12 +15,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.os.Build;
 import android.widget.Button;
-import android.widget.Toast;
 
-
-public class DeleteIntentDemo extends ActionBarActivity {
+public class DeleteIntentDemo extends Activity {
 
     public static final String TAG = "DeleteIntentDemo";
 
@@ -31,8 +26,8 @@ public class DeleteIntentDemo extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delete_intent_demo);
         if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new PlaceholderFragment())
+            getFragmentManager().beginTransaction()
+                    .add(R.id.container, new PlaceholderFragment(), "")
                     .commit();
         }
     }
@@ -41,19 +36,11 @@ public class DeleteIntentDemo extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.delete_intent_demo, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -92,7 +79,7 @@ public class DeleteIntentDemo extends ActionBarActivity {
                     // Set our state to notified
                     Notification notification = createNotification(getActivity(), tripUri);
 
-                    setLatestInfo(getActivity(), notification, routeId);
+                    setLatestInfo(getActivity(), notification, routeId, tripUri);
                     mNM.notify(counter, notification);
                 }
             });
@@ -107,7 +94,7 @@ public class DeleteIntentDemo extends ActionBarActivity {
         deleteIntent.setAction(PlaceholderFragment.ACTION_CANCEL);
         deleteIntent.setData(alertUri);
 
-        return new NotificationCompat.Builder(context)
+        return new Notification.Builder(context)
                 .setSmallIcon(R.drawable.ic_stat_notification)
                 .setDefaults(Notification.DEFAULT_ALL)
                 .setOnlyAlertOnce(true)
@@ -121,12 +108,19 @@ public class DeleteIntentDemo extends ActionBarActivity {
 
     @SuppressWarnings("deprecation")
     private static void setLatestInfo(Context context, Notification notification,
-            String routeId) {
+            String routeId, Uri alertUri) {
         final String title = context.getString(R.string.app_name);
 
         notification.setLatestEventInfo(context,
                 title,
                 routeId + " departed",
                 null);
+
+        // If you uncomment the below, the DeleteIntent will be received
+//        Intent deleteIntent = new Intent(context, AlarmReceiver.class);
+//        deleteIntent.setAction(PlaceholderFragment.ACTION_CANCEL);
+//        deleteIntent.setData(alertUri);
+//        notification.deleteIntent = PendingIntent.getBroadcast(context, 0,
+//                deleteIntent, PendingIntent.FLAG_UPDATE_CURRENT);
     }
 }
