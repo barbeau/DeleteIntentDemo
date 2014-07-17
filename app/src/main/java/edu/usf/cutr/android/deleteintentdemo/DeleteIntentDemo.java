@@ -30,7 +30,7 @@ public class DeleteIntentDemo extends ActionBarActivity {
     public static final Uri mTripUri = Uri.parse("content://com.joulespersecond.oba/trip_alerts/1");
     public static final String mRouteId = "Route 5";
     public static final String ACTION_CANCEL =
-            "com.joulespersecond.seattlebusbot.action.CANCEL";
+            "com.joulespersecond.seattlebusbot.action.SCHEDULE";
     public static int id = 0;
 
     @Override
@@ -68,8 +68,10 @@ public class DeleteIntentDemo extends ActionBarActivity {
                     id++;
 
                     // Deliver DeleteIntent to BroadcastReceiver
-                    Notification notification = createNotification(mContext, AlarmReceiver.class);
-                    showNotification(mContext, notification, AlarmReceiver.class);
+//                    Notification notification = createNotification(mContext, AlarmReceiver.class);
+//                    showNotification(mContext, notification, AlarmReceiver.class);
+                    final Intent intent = new Intent(ACTION_CANCEL);
+                    getActivity().sendBroadcast(intent);
                 }
             });
 
@@ -78,8 +80,8 @@ public class DeleteIntentDemo extends ActionBarActivity {
                     id++;
 
                     // Deliver DeleteIntent to Service
-                    Notification notification = createNotification(mContext, AlarmService.class);
-                    showNotification(mContext, notification, AlarmService.class);
+//                    Notification notification = createNotification(mContext, AlarmService.class);
+//                    showNotification(mContext, notification, AlarmService.class);
                 }
             });
 

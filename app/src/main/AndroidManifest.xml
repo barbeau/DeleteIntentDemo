@@ -31,5 +31,6 @@
     </application>
 
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="com.joulespersecond.seattlebusbot.permission.TRIP_SERVICE" />
 
 </manifest>
