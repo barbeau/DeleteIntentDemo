@@ -23,7 +23,9 @@ From current tests, this works correctly on:
 * Android 4.4.4
 
 I've filed an issue for this at the AOSP issue tracker here:
+
 https://code.google.com/p/android/issues/detail?id=73720
 
 ...and submitted a fix for this issue here:
+
 https://android-review.googlesource.com/#/c/102060/
